@@ -533,18 +533,18 @@ The exact experimental reason for choosing this ensemble over alternatives—suc
 
 The numerical preprocessing pipeline uses standard scaling.
 
-\[
+$$
 
 z = \frac{x-\mu}{\sigma}
 
-\]
+$$
 
 Where:
 
-- \(x\) is the input feature value.
-- \(\mu\) is the mean learned from the training data.
-- \(\sigma\) is the corresponding standard deviation learned by the scaler.
-- \(z\) is the standardized value.
+- $x$ is the input feature value.
+- $\mu$ is the mean learned from the training data.
+- $\sigma$ is the corresponding standard deviation learned by the scaler.
+- $z$ is the standardized value.
 
 The fitted scaler applies the learned transformation to subsequent inputs.
 
@@ -552,7 +552,7 @@ The fitted scaler applies the learned transformation to subsequent inputs.
 
 For a soft-voting ensemble, the combined class score is based on the average of the base estimators' predicted class probabilities, subject to the classifier's configured estimator weights.
 
-\[
+$$
 
 P_{\text{ensemble}}(y=c\mid x)
 
@@ -560,14 +560,14 @@ P_{\text{ensemble}}(y=c\mid x)
 
 \frac{1}{M}\sum_{m=1}^{M}P_m(y=c\mid x)
 
-\]
+$$
 
 Where:
 
-- \(x\) is an input profile.
-- \(c\) is a candidate career class.
-- \(M\) is the number of base estimators.
-- \(P_m(y=c\mid x)\) is the probability returned by estimator \(m\) for class \(c\).
+- $x$ is an input profile.
+- $c$ is a candidate career class.
+- $M$ is the number of base estimators.
+- $P_m(y=c\mid x)$ is the probability returned by estimator $m$ for class $c$.
 
 This equation represents equal-weight soft voting. The implementation should be checked for explicit estimator weights before assuming that equal weighting is the exact configuration.
 
@@ -575,30 +575,30 @@ This equation represents equal-weight soft voting. The implementation should be 
 
 The questionnaire integration maps selected ratings on a 1–5 scale to a 2–10 scale by multiplying the response by two.
 
-\[
+$$
 
 s = 2r
 
-\]
+$$
 
 Where:
 
-- \(r\) is the original response, from 1 to 5.
-- \(s\) is the converted score, from 2 to 10.
+- $r$ is the original response, from 1 to 5.
+- $s$ is the converted score, from 2 to 10.
 
 For aptitude questions with sufficient answered items, the implemented scoring logic converts the observed correct-answer fraction into a 1–10 score:
 
-\[
+$$
 
 s_{\text{aptitude}} = 1 + 9\left(\frac{k}{n}\right)
 
-\]
+$$
 
 Where:
 
-- \(k\) is the number of correct answers.
-- \(n\) is the number of answered questions used in the score.
-- \(s_{\text{aptitude}}\) is the calculated score.
+- $k$ is the number of correct answers.
+- $n$ is the number of answered questions used in the score.
+- $s_{\text{aptitude}}$ is the calculated score.
 
 The application applies minimum-answer thresholds for logical, numerical, and critical-thinking aptitude. Verbal and spatial aptitude currently have fewer mapped items, which limits the strength of conclusions that can be drawn from those scores.
 
