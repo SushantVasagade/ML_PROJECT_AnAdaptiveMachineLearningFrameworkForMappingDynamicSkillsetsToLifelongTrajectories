@@ -533,11 +533,9 @@ The exact experimental reason for choosing this ensemble over alternatives—suc
 
 The numerical preprocessing pipeline uses standard scaling.
 
-$$
-
-z = \frac{x-\mu}{\sigma}
-
-$$
+```text
+z = (x - mean) / standard_deviation
+```
 
 Where:
 
@@ -552,15 +550,9 @@ The fitted scaler applies the learned transformation to subsequent inputs.
 
 For a soft-voting ensemble, the combined class score is based on the average of the base estimators' predicted class probabilities, subject to the classifier's configured estimator weights.
 
-$$
-
-P_{\text{ensemble}}(y=c\mid x)
-
-=
-
-\frac{1}{M}\sum_{m=1}^{M}P_m(y=c\mid x)
-
-$$
+```text
+P_ensemble(y = c | x) = (1 / M) * sum from m = 1 to M of P_m(y = c | x)
+```
 
 Where:
 
@@ -575,11 +567,9 @@ This equation represents equal-weight soft voting. The implementation should be 
 
 The questionnaire integration maps selected ratings on a 1–5 scale to a 2–10 scale by multiplying the response by two.
 
-$$
-
-s = 2r
-
-$$
+```text
+s = 2 * r
+```
 
 Where:
 
@@ -588,11 +578,9 @@ Where:
 
 For aptitude questions with sufficient answered items, the implemented scoring logic converts the observed correct-answer fraction into a 1–10 score:
 
-$$
-
-s_{\text{aptitude}} = 1 + 9\left(\frac{k}{n}\right)
-
-$$
+```text
+s_aptitude = 1 + 9 * (k / n)
+```
 
 Where:
 
